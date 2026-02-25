@@ -28,3 +28,9 @@ export type Listing = {
 
   listing_images: ListingImage[];
 };
+
+export type ListingsResponse = {
+  listings: Listing[];
+  pagination: any; // we can refine later
+};
+

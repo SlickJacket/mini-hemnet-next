@@ -1,8 +1,8 @@
 import { api } from "./client";
-import type { Listing } from "../types/listing";
+import type { Listing, ListingsResponse} from "../types/listing";
 
-export async function fetchListings(): Promise<Listing[]> {
-  const res = await api.get<Listing[]>("/listings");
+export async function fetchListings(): Promise<ListingsResponse> {
+  const res = await api.get("/listings");
   return res.data;
 }
 
