@@ -1,17 +1,21 @@
 import { create } from "zustand";
 
-type FiltersState = {
-  area: string | null;
-  minPrice: number | null;
-  maxPrice: number | null;
-  rooms: number | null;
-  setFilters: (filters: Partial<FiltersState>) => void;
+export type ListingFilters = {
+  min_price?: number;
+  max_price?: number;
+  min_rooms?: number;
+  area?: string;
+  sold?: boolean;
+  sort?: string;
 };
-
-export const useFilters = create<FiltersState>((set) => ({
-  area: null,
-  minPrice: null,
-  maxPrice: null,
-  rooms: null,
-  setFilters: (filters) => set(filters),
+type FilterStore = {
+  filters: ListingFilters;
+  setFilter: (key: keyof ListingFilters, value: any) => void;
+  resetFilters: () => void;
+};
+export const useListingFilters = create<FilterStore>((set) => ({
+  filters: {},
+  setFilter: (key, value) =>
+    set((state) => ({ filters: { ...state.filters, [key]: value } })),
+  resetFilters: () => set({ filters: {} }),
 }));

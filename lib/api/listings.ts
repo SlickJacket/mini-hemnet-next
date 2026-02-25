@@ -1,8 +1,9 @@
 import { api } from "./client";
-import type { Listing, ListingsResponse} from "../types/listing";
+import type { Listing, ListingsResponse } from "../types/listing";
+import { ListingFilters } from "../store/useFilters";
 
-export async function fetchListings(): Promise<ListingsResponse> {
-  const res = await api.get("/listings");
+export async function fetchListings(filters?: ListingFilters) {
+  const res = await api.get("/listings", { params: filters });
   return res.data;
 }
 
