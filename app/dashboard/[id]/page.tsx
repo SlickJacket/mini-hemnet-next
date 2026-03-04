@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import SummaryGrid from "@/components/dashboard/SummaryGrid";
 
 type DashboardPageProps = {
   params: { id: string };
@@ -20,17 +21,7 @@ export default async function DashboardPage({ params }: DashboardPageProps) {
         </div>
       </header>
 
-      <section className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="h-24 rounded-lg border border-gray-200 bg-white shadow-sm" />
-        <div className="h-24 rounded-lg border border-gray-200 bg-white shadow-sm" />
-        <div className="h-24 rounded-lg border border-gray-200 bg-white shadow-sm" />
-        <div className="h-24 rounded-lg border border-gray-200 bg-white shadow-sm" />
-      </section>
-
-      <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 h-64 rounded-lg border border-gray-200 bg-white shadow-sm" />
-        <div className="h-64 rounded-lg border border-gray-200 bg-white shadow-sm" />
-      </section>
+      <SummaryGrid listingId={Number(id)} />
     </main>
   );
 }

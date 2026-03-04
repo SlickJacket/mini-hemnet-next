@@ -8,12 +8,18 @@ export type Insight = {
 };
 
 export type InsightSummary = {
-  views: number;
-  saves: number;
-  inquiries: number;
+  total_views: number;
+  total_saves: number;
+  total_inquiries: number;
+  funnel: {
+    views: number;
+    saves: number;
+    inquiries: number;
+  };
+  engagement_score: number;
 };
 
 export type InsightSeriesPoint = {
-  date: string;  // "2026-02-24"
+  date: string; // "2026-02-24"
   count: number;
 };
