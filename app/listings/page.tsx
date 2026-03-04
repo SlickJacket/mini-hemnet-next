@@ -59,7 +59,7 @@ export default function ListingsPage() {
   return (
     <main className="p-6 space-y-4">
       <h1 className="text-2xl font-semibold">Listings</h1>
-      <div className="sticky top-0 z-20 py-4">
+      <div className="sticky top-14 z-20 py-4">
         <ListingFilters />
       </div>
 

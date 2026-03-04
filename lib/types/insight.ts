@@ -17,6 +17,11 @@ export type InsightSummary = {
     inquiries: number;
   };
   engagement_score: number;
+  trend: {
+    views: number;
+    saves: number;
+    inquiries: number;
+  };
 };
 
 export type InsightSeriesResponse = {

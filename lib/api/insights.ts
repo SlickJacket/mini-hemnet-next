@@ -13,8 +13,11 @@ export async function fetchInsights(listingId: number): Promise<Insight[]> {
 
 export async function fetchInsightSummary(
   listingId: number,
+  interval: "daily" | "weekly" | "monthly",
 ): Promise<InsightSummary> {
-  const res = await api.get(`/listings/${listingId}/insights/summary`);
+  const res = await api.get(`/listings/${listingId}/insights/summary`, {
+    params: { interval },
+  });
   return res.data;
 }
 

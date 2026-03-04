@@ -1,17 +1,18 @@
 "use client";
 
-import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import IntervalSelector from "./IntervalSelector";
 import LineChart from "./LineChart";
 import { fetchInsightSeries } from "@/lib/api/insights";
 import type { InsightSeriesPoint } from "@/lib/types/insight";
 
-export default function ChartsGrid({ listingId }: { listingId: number }) {
-  const [interval, setInterval] = useState<"daily" | "weekly" | "monthly">(
-    "daily",
-  );
-
+export default function ChartsGrid({
+  listingId,
+  interval,
+}: {
+  listingId: number;
+  interval: "daily" | "weekly" | "monthly";
+}) {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["insight-series", listingId, interval],
     queryFn: () => fetchInsightSeries(listingId, interval),
@@ -32,8 +33,6 @@ export default function ChartsGrid({ listingId }: { listingId: number }) {
 
   return (
     <div className="space-y-4">
-      <IntervalSelector value={interval} onChange={setInterval} />
-
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <LineChart
           title="Views Over Time"

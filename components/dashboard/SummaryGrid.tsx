@@ -4,10 +4,16 @@ import { useQuery } from "@tanstack/react-query";
 import SummaryCard from "./SummaryCard";
 import { fetchInsightSummary } from "@/lib/api/insights";
 
-export default function SummaryGrid({ listingId }: { listingId: number }) {
+export default function SummaryGrid({
+  listingId,
+  interval,
+}: {
+  listingId: number;
+  interval: "daily" | "weekly" | "monthly";
+}) {
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["insight-summary", listingId],
-    queryFn: () => fetchInsightSummary(listingId),
+    queryKey: ["insight-summary", listingId, interval],
+    queryFn: () => fetchInsightSummary(listingId, interval),
   });
 
   if (isLoading) {
@@ -27,17 +33,32 @@ export default function SummaryGrid({ listingId }: { listingId: number }) {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-      <SummaryCard label="Total Views" value={data.total_views} accent="blue" />
-      <SummaryCard label="Saves" value={data.total_saves} accent="green" />
       <SummaryCard
-        label="Inquiries"
+        label="Total Views"
+        value={data.total_views}
+        accent="blue"
+        trend={data.trend.views}
+      />
+
+      <SummaryCard
+        label="Total Saves"
+        value={data.total_saves}
+        accent="green"
+        trend={data.trend.saves}
+      />
+
+      <SummaryCard
+        label="Total Inquiries"
         value={data.total_inquiries}
         accent="purple"
+        trend={data.trend.inquiries}
       />
+
       <SummaryCard
         label="Engagement Score"
         value={data.engagement_score}
         accent="orange"
+        // optional: no trend for engagement score unless backend provides it
       />
     </div>
   );

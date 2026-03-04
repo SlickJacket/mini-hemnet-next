@@ -35,6 +35,15 @@ export default function ListingDetailPage({
 
   return (
     <main className="p-6 space-y-6">
+      <div>
+        <Link
+          href="/listings"
+          className="text-sm text-center text-gray-600 hover:text-gray-900 transition"
+        >
+          ← Back to listings
+        </Link>
+      </div>
+
       {/* Image Gallery */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {images.map((img) => (

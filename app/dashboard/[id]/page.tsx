@@ -1,17 +1,20 @@
-import type { Metadata } from "next";
+"use client";
+
+import { useState, use } from "react";
 import SummaryGrid from "@/components/dashboard/SummaryGrid";
 import ChartsGrid from "@/components/dashboard/ChartsGrid";
+import IntervalSelector from "@/components/dashboard/IntervalSelector";
 
 type DashboardPageProps = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
-export const metadata: Metadata = {
-  title: "Listing Insights Dashboard",
-};
+export default function DashboardPage({ params }: DashboardPageProps) {
+  const { id } = use(params);
 
-export default async function DashboardPage({ params }: DashboardPageProps) {
-  const { id } = await params;
+  const [interval, setInterval] = useState<"daily" | "weekly" | "monthly">(
+    "daily",
+  );
 
   return (
     <main className="p-6 max-w-6xl mx-auto space-y-6">
@@ -20,10 +23,12 @@ export default async function DashboardPage({ params }: DashboardPageProps) {
           <h1 className="text-2xl font-semibold">Insights dashboard</h1>
           <p className="text-sm text-gray-600">Listing ID: {id}</p>
         </div>
+
+        <IntervalSelector value={interval} onChange={setInterval} />
       </header>
 
-      <SummaryGrid listingId={Number(id)} />
-      <ChartsGrid listingId={Number(id)} />
+      <SummaryGrid listingId={Number(id)} interval={interval} />
+      <ChartsGrid listingId={Number(id)} interval={interval} />
     </main>
   );
 }
