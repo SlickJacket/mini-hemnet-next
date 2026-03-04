@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Listing } from "@/lib/types/listing";
 
 type Props = {
@@ -11,7 +12,10 @@ export default function ListingCard({ listing }: Props) {
     `https://images.unsplash.com/photo-1599696848652-f0ff23bc911f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`;
 
   return (
-    <div className="rounded-lg border shadow-sm overflow-hidden hover:shadow-md transition">
+    <Link
+      href={`/listings/${listing.id}`}
+      className="block rounded-lg border shadow-sm overflow-hidden hover:shadow-md transition"
+    >
       <div className="relative h-48 w-full">
         <Image
           src={imageUrl}
@@ -33,6 +37,6 @@ export default function ListingCard({ listing }: Props) {
           {listing.price.toLocaleString("sv-SE")} kr
         </p>
       </div>
-    </div>
+    </Link>
   );
 }

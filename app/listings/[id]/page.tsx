@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchListing } from "@/lib/api/listings";
 import Image from "next/image";
 import { recordView, recordSave, recordInquiry } from "@/lib/api/insights";
+import Link from "next/link";
 
 export default function ListingDetailPage({
   params,
@@ -50,7 +51,13 @@ export default function ListingDetailPage({
           </div>
         ))}
       </div>
-
+      {/* Insights Dashboard */}
+      <Link
+        href={`/dashboard/${id}`}
+        className="inline-flex items-center text-sm text-blue-600 hover:underline"
+      >
+        View insights dashboard
+      </Link>
       {/* Title + Address */}
       <div>
         <h1 className="text-3xl font-bold">{listing.title}</h1>

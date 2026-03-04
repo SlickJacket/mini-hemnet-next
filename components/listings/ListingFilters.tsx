@@ -115,7 +115,7 @@ export default function ListingFilters() {
       {/* Reset */}
       <button
         onClick={resetFilters}
-        className="px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg hover:bg-gray-200 transition"
+        className="px-4 py-2 bg-gray-100 border border-gray-300 text-black rounded-lg hover:bg-gray-200 transition"
       >
         Reset
       </button>
