@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SummaryGrid from "@/components/dashboard/SummaryGrid";
+import ChartsGrid from "@/components/dashboard/ChartsGrid";
 
 type DashboardPageProps = {
   params: { id: string };
@@ -22,6 +23,7 @@ export default async function DashboardPage({ params }: DashboardPageProps) {
       </header>
 
       <SummaryGrid listingId={Number(id)} />
+      <ChartsGrid listingId={Number(id)} />
     </main>
   );
 }
