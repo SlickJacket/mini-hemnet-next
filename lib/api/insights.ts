@@ -3,6 +3,7 @@ import type {
   Insight,
   InsightSummary,
   InsightSeriesPoint,
+  InsightSeriesResponse,
 } from "../types/insight";
 
 export async function fetchInsights(listingId: number): Promise<Insight[]> {
@@ -12,16 +13,19 @@ export async function fetchInsights(listingId: number): Promise<Insight[]> {
 
 export async function fetchInsightSummary(
   listingId: number,
+  interval: "daily" | "weekly" | "monthly",
 ): Promise<InsightSummary> {
-  const res = await api.get(`/listings/${listingId}/insights/summary`);
+  const res = await api.get(`/listings/${listingId}/insights/summary`, {
+    params: { interval },
+  });
   return res.data;
 }
 
 export async function fetchInsightSeries(
   listingId: number,
   interval: "daily" | "weekly" | "monthly",
-): Promise<InsightSeriesPoint[]> {
-  const res = await api.get(`/listings/${listingId}/insights/series`, {
+): Promise<InsightSeriesResponse> {
+  const res = await api.get(`/listings/${listingId}/insights/timeseries`, {
     params: { interval },
   });
   return res.data;

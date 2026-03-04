@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchListing } from "@/lib/api/listings";
 import Image from "next/image";
 import { recordView, recordSave, recordInquiry } from "@/lib/api/insights";
+import Link from "next/link";
 
 export default function ListingDetailPage({
   params,
@@ -34,6 +35,15 @@ export default function ListingDetailPage({
 
   return (
     <main className="p-6 space-y-6">
+      <div>
+        <Link
+          href="/listings"
+          className="text-sm text-center text-gray-600 hover:text-gray-900 transition"
+        >
+          ← Back to listings
+        </Link>
+      </div>
+
       {/* Image Gallery */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {images.map((img) => (
@@ -50,7 +60,13 @@ export default function ListingDetailPage({
           </div>
         ))}
       </div>
-
+      {/* Insights Dashboard */}
+      <Link
+        href={`/dashboard/${id}`}
+        className="inline-flex items-center text-sm text-blue-600 hover:underline"
+      >
+        View insights dashboard
+      </Link>
       {/* Title + Address */}
       <div>
         <h1 className="text-3xl font-bold">{listing.title}</h1>
